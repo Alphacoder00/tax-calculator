@@ -106,8 +106,8 @@ export function TaxPreviewPanel({ data }) {
       <div className="flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar">
         {!hasIncome ? (
           <div className="px-6 py-16 text-center flex flex-col items-center justify-center h-full">
-            <div className="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-4 border border-bordercol">
-              <Calculator className="w-6 h-6 text-gray-300" />
+            <div className="w-16 h-16 bg-[#FBF7F2] rounded-2xl flex items-center justify-center mb-4 border border-bordercol">
+              <Calculator className="w-6 h-6 text-secondaryText/40" />
             </div>
             <p className="text-sm font-semibold text-secondaryText leading-relaxed">
               Enter your details on the left to see<br/>your live tax calculation here.
@@ -121,41 +121,41 @@ export function TaxPreviewPanel({ data }) {
           >
             {/* Regime Toggle */}
             <div className="px-6 py-4">
-              <div className="flex rounded-xl bg-gray-100/80 p-1 w-full relative">
+              <div className="flex rounded-full bg-[#FBF7F2] border border-[#EDE6DD] p-1 w-full relative">
                 <div 
-                  className="absolute inset-y-1 rounded-lg bg-white shadow-sm transition-all duration-300 ease-out border border-gray-200/50"
+                  className="absolute inset-y-1 rounded-full bg-white shadow-sm transition-all duration-300 ease-out border border-[#EDE6DD]"
                   style={{ width: 'calc(50% - 4px)', left: regime === 'new' ? '4px' : 'calc(50%)' }}
                 />
                 
                 <button
                   type="button"
                   onClick={() => setUserPickedRegime('new')}
-                  className={`relative z-10 flex-1 py-2 text-xs font-bold transition-colors rounded-lg flex items-center justify-center gap-1.5 ${regime === 'new' ? 'text-primary' : 'text-secondaryText hover:text-primaryText'}`}
+                  className={`relative z-10 flex-1 py-2 text-xs font-bold transition-colors rounded-full flex items-center justify-center gap-1.5 ${regime === 'new' ? 'text-primary' : 'text-secondaryText hover:text-primaryText'}`}
                 >
                   New Regime
-                  {autoRecommended === 'new' && <span className="bg-success text-white text-[9px] px-1.5 py-0.5 rounded-sm uppercase tracking-widest">Best</span>}
+                  {autoRecommended === 'new' && <span className="bg-secondaryAccent text-white text-[9px] px-1.5 py-0.5 rounded-[4px] uppercase tracking-widest font-sans">Best</span>}
                 </button>
                 <button
                   type="button"
                   onClick={() => setUserPickedRegime('old')}
-                  className={`relative z-10 flex-1 py-2 text-xs font-bold transition-colors rounded-lg flex items-center justify-center gap-1.5 ${regime === 'old' ? 'text-primary' : 'text-secondaryText hover:text-primaryText'}`}
+                  className={`relative z-10 flex-1 py-2 text-xs font-bold transition-colors rounded-full flex items-center justify-center gap-1.5 ${regime === 'old' ? 'text-primary' : 'text-secondaryText hover:text-primaryText'}`}
                 >
                   Old Regime
-                  {autoRecommended === 'old' && <span className="bg-success text-white text-[9px] px-1.5 py-0.5 rounded-sm uppercase tracking-widest">Best</span>}
+                  {autoRecommended === 'old' && <span className="bg-secondaryAccent text-white text-[9px] px-1.5 py-0.5 rounded-[4px] uppercase tracking-widest font-sans">Best</span>}
                 </button>
               </div>
             </div>
 
             {/* Total Tax Banner */}
             <div className="px-6 mb-6">
-              <div className="rounded-2xl bg-accent-gradient p-6 text-white shadow-floating relative overflow-hidden">
+              <div className="rounded-[20px] bg-primary p-6 text-white shadow-floating relative overflow-hidden">
                 <div className="absolute top-[-50%] right-[-10%] w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
                 <p className="text-[10px] text-white/80 font-bold uppercase tracking-widest mb-1 relative z-10">Total Tax Payable</p>
                 <motion.div 
                   key={activeData.totalTax}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="text-4xl font-black tracking-tight relative z-10"
+                  className="text-4xl font-serif font-semibold tracking-tight relative z-10"
                 >
                   ₹{fmtNum(activeData.totalTax)}
                 </motion.div>
@@ -175,13 +175,13 @@ export function TaxPreviewPanel({ data }) {
                   exit={{ opacity: 0, height: 0, marginBottom: 0 }}
                   className="px-6 overflow-hidden"
                 >
-                  <div className="flex items-center gap-3 bg-success/10 border border-success/20 rounded-xl px-4 py-3">
-                    <div className="w-8 h-8 rounded-full bg-success/20 flex items-center justify-center shrink-0">
-                      <Zap className="w-4 h-4 text-success" />
+                  <div className="flex items-center gap-3 bg-secondaryAccent/10 border border-secondaryAccent/20 rounded-[16px] px-4 py-3">
+                    <div className="w-8 h-8 rounded-full bg-secondaryAccent/20 flex items-center justify-center shrink-0">
+                      <Zap className="w-4 h-4 text-secondaryAccent" />
                     </div>
                     <div>
-                      <div className="text-sm font-black text-success tracking-tight">Save ₹{fmtNum(results.savings)}</div>
-                      <div className="text-[11px] font-semibold text-success/80">by picking the {autoRecommended === 'new' ? 'New' : 'Old'} regime</div>
+                      <div className="text-sm font-bold text-secondaryAccent tracking-tight">Save ₹{fmtNum(results.savings)}</div>
+                      <div className="text-[11px] font-semibold text-secondaryAccent/80">by picking the {autoRecommended === 'new' ? 'New' : 'Old'} regime</div>
                     </div>
                   </div>
                 </motion.div>
@@ -218,9 +218,9 @@ export function TaxPreviewPanel({ data }) {
                 </div>
                 
                 {regime === 'new' && !data.hasEmployerNPS && (
-                  <div className="ml-11 mt-3 flex items-start gap-2 p-3 bg-blue-50/50 border border-blue-100 rounded-xl">
-                    <CheckCircle2 className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
-                    <p className="text-xs font-medium text-blue-800 leading-relaxed">Under the New Regime, standard deduction (₹75k) is the main deduction available.</p>
+                  <div className="ml-11 mt-3 flex items-start gap-2 p-3 bg-[#FBF7F2] border border-bordercol rounded-[16px]">
+                    <CheckCircle2 className="w-4 h-4 text-secondaryAccent shrink-0 mt-0.5" />
+                    <p className="text-xs font-medium text-primaryText leading-relaxed">Under the New Regime, standard deduction (₹75k) is the main deduction available.</p>
                   </div>
                 )}
                 
@@ -232,15 +232,15 @@ export function TaxPreviewPanel({ data }) {
               <div>
                 <SectionLabel letter="C" text="Tax Calculation" />
                 <div className="pl-11 mb-4">
-                  <div className="bg-gray-50 rounded-xl border border-bordercol overflow-hidden">
-                    <div className="grid grid-cols-3 gap-2 px-4 py-2 border-b border-bordercol bg-gray-100/50">
+                  <div className="bg-[#FBF7F2] rounded-[16px] border border-bordercol overflow-hidden">
+                    <div className="grid grid-cols-3 gap-2 px-4 py-2 border-b border-bordercol bg-white/50">
                       <div className="text-[10px] font-bold text-secondaryText uppercase">Slab</div>
                       <div className="text-[10px] font-bold text-secondaryText uppercase text-center">Rate</div>
                       <div className="text-[10px] font-bold text-secondaryText uppercase text-right">Tax</div>
                     </div>
                     <div className="divide-y divide-gray-100">
                       {slabRows.map((row, i) => (
-                        <div key={i} className={`grid grid-cols-3 gap-2 px-4 py-2 text-[11px] ${row.active ? 'bg-primary/5 text-primary font-bold' : 'text-gray-400 font-medium'}`}>
+                        <div key={i} className={`grid grid-cols-3 gap-2 px-4 py-2 text-[11px] ${row.active ? 'bg-primary/5 text-primary font-bold' : 'text-secondaryText/50 font-medium'}`}>
                           <div className="truncate">{row.label}</div>
                           <div className="text-center">{row.rate}</div>
                           <div className="text-right">{row.tax > 0 ? `₹${fmtNum(row.tax)}` : '-'}</div>
@@ -257,8 +257,8 @@ export function TaxPreviewPanel({ data }) {
                 </div>
                 
                 <div className="pl-11 mt-4">
-                  <div className="flex justify-between items-center bg-primaryText rounded-xl px-5 py-4 shadow-lg">
-                    <span className="text-xs font-bold text-gray-300 uppercase tracking-widest">Final Tax</span>
+                  <div className="flex justify-between items-center bg-primaryText rounded-[20px] px-5 py-4 shadow-lg">
+                    <span className="text-xs font-bold text-white/70 uppercase tracking-widest">Final Tax</span>
                     <motion.span 
                       key={`final-${activeData.totalTax}`}
                       initial={{ scale: 0.9, opacity: 0 }}

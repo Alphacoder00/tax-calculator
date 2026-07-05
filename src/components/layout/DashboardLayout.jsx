@@ -34,11 +34,11 @@ export function DashboardLayout({ children, goBack, reset, step, data, goNext })
         
         {/* Logo */}
         <div className="flex items-center gap-3 mb-10 cursor-pointer" onClick={reset}>
-          <div className="w-10 h-10 rounded-[12px] bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
+          <div className="w-10 h-10 rounded-[16px] bg-secondaryAccent flex items-center justify-center shadow-sm">
             <CalculatorIcon />
           </div>
           <div className="flex flex-col">
-            <span className="text-lg font-bold text-primaryText tracking-tight leading-none">TaxWise</span>
+            <span className="text-lg font-serif font-semibold text-primaryText tracking-tight leading-none">TaxWise</span>
             <span className="text-xs text-secondaryText font-medium mt-1">FY 2025-26</span>
           </div>
         </div>
@@ -53,17 +53,27 @@ export function DashboardLayout({ children, goBack, reset, step, data, goNext })
             return (
               <div
                 key={group.id}
-                className={`flex items-center gap-4 p-3 rounded-xl transition-all duration-300 ${isActive ? 'bg-primary/5 border border-primary/10 shadow-sm' : 'hover:bg-gray-50'}`}
+                className={`flex items-center gap-4 p-3 rounded-full transition-all duration-300 ${
+                  isActive 
+                    ? 'bg-secondaryAccent text-white border border-secondaryAccent/20 shadow-sm' 
+                    : 'hover:bg-[#FBF7F2] text-primaryText'
+                }`}
               >
-                <div className={`relative flex items-center justify-center w-10 h-10 rounded-[10px] transition-colors ${isActive ? 'bg-white text-primary shadow-sm border border-primary/10' : isCompleted ? 'bg-success/10 text-success' : 'bg-gray-100 text-gray-400'}`}>
+                <div className={`relative flex items-center justify-center w-10 h-10 rounded-full transition-colors ${
+                  isActive 
+                    ? 'bg-white/20 text-white border border-white/10' 
+                    : isCompleted 
+                      ? 'bg-secondaryAccent/10 text-secondaryAccent' 
+                      : 'bg-[#FBF7F2] text-secondaryText'
+                }`}>
                   {isCompleted ? <CheckCircle2 className="w-5 h-5" /> : <Icon className="w-5 h-5" strokeWidth={isActive ? 2.5 : 2} />}
                   {idx !== SIDEBAR_GROUPS.length - 1 && (
                     <div className="absolute top-10 left-1/2 -ml-[1px] w-[2px] h-4 bg-bordercol" />
                   )}
                 </div>
                 <div className="flex flex-col">
-                  <span className={`text-xs font-bold uppercase tracking-wider ${isActive ? 'text-primary' : 'text-gray-400'}`}>Step {group.id}</span>
-                  <span className={`text-sm font-semibold ${isActive ? 'text-primaryText' : isCompleted ? 'text-gray-600' : 'text-gray-500'}`}>{group.title}</span>
+                  <span className={`text-[10px] font-bold uppercase tracking-wider ${isActive ? 'text-white/80' : 'text-secondaryText'}`}>Step {group.id}</span>
+                  <span className={`text-sm font-bold ${isActive ? 'text-white' : 'text-primaryText'}`}>{group.title}</span>
                 </div>
               </div>
             )
@@ -72,11 +82,11 @@ export function DashboardLayout({ children, goBack, reset, step, data, goNext })
 
         {/* Trust Signals */}
         <div className="mt-auto flex flex-col gap-4 pt-6 border-t border-bordercol">
-          <div className="bg-success/5 border border-success/20 rounded-xl p-4 flex items-start gap-3">
-            <ShieldCheck className="w-5 h-5 text-success shrink-0 mt-0.5" />
+          <div className="bg-secondaryAccent/5 border border-secondaryAccent/20 rounded-[20px] p-4 flex items-start gap-3">
+            <ShieldCheck className="w-5 h-5 text-secondaryAccent shrink-0 mt-0.5" />
             <div>
-              <p className="text-xs font-bold text-success">100% Private</p>
-              <p className="text-[11px] text-success/80 mt-1">Your data never leaves your browser. CA reviewed formulas.</p>
+              <p className="text-xs font-bold text-secondaryAccent">100% Private</p>
+              <p className="text-[11px] text-secondaryText mt-1">Your data never leaves your browser. CA reviewed formulas.</p>
             </div>
           </div>
         </div>
@@ -86,15 +96,15 @@ export function DashboardLayout({ children, goBack, reset, step, data, goNext })
       <div className="flex-1 flex flex-col min-h-screen relative pb-32">
         
         {/* Mobile Header */}
-        <header className="md:hidden sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-bordercol px-4 py-3 flex items-center justify-between">
+        <header className="md:hidden sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-bordercol px-4 py-3 flex items-center justify-between">
            <div className="flex items-center gap-2" onClick={reset}>
-             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+             <div className="w-8 h-8 rounded-[10px] bg-secondaryAccent flex items-center justify-center">
                <CalculatorIcon />
              </div>
-             <span className="text-base font-bold text-primaryText tracking-tight">TaxWise</span>
+             <span className="text-base font-serif font-bold text-primaryText tracking-tight">TaxWise</span>
            </div>
            {step > 1 && step < 14 && (
-             <span className="text-xs font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">
+             <span className="text-xs font-bold text-secondaryAccent bg-secondaryAccent/10 px-3 py-1 rounded-full">
                Step {activeGroup} of 5
              </span>
            )}
@@ -135,7 +145,7 @@ export function DashboardLayout({ children, goBack, reset, step, data, goNext })
         
         {/* Sticky Bottom Summary Footer */}
         {hasIncome && step > 3 && step < 14 && (
-          <div className="fixed bottom-0 left-0 md:left-72 right-0 bg-white/80 backdrop-blur-xl border-t border-bordercol shadow-[0_-10px_40px_rgba(0,0,0,0.05)] z-50 p-4 md:px-10">
+          <div className="fixed bottom-0 left-0 md:left-72 right-0 bg-white/90 backdrop-blur-xl border-t border-bordercol shadow-[0_-10px_40px_rgba(58,52,46,0.03)] z-50 p-4 md:px-10">
             <div className="max-w-7xl xl:max-w-[1360px] 2xl:max-w-[1536px] 3xl:max-w-[1720px] 4xl:max-w-[1840px] mx-auto flex items-center justify-between gap-4">
               
               <div className="flex items-center gap-6">
@@ -144,9 +154,9 @@ export function DashboardLayout({ children, goBack, reset, step, data, goNext })
                   <span className="text-lg font-black text-primaryText">₹{fmtNum(activeData?.totalTax || 0)}</span>
                 </div>
                 {results?.savings > 0 && (
-                  <div className="flex flex-col border-l border-gray-200 pl-6">
-                    <span className="text-[10px] font-bold text-success uppercase tracking-wider">Money Saved</span>
-                    <span className="text-lg font-black text-success">₹{fmtNum(results.savings)}</span>
+                  <div className="flex flex-col border-l border-bordercol pl-6">
+                    <span className="text-[10px] font-bold text-secondaryAccent uppercase tracking-wider">Money Saved</span>
+                    <span className="text-lg font-black text-secondaryAccent">₹{fmtNum(results.savings)}</span>
                   </div>
                 )}
               </div>

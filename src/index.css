@@ -4,12 +4,14 @@
 
 @layer base {
   :root {
-    --bg-color: #F8FAFC;
+    --bg-color: #FBF7F2;
     --card-color: #FFFFFF;
-    --primary: #5B5CEB;
-    --primary-gradient: linear-gradient(135deg, #6C63FF 0%, #4F46E5 100%);
-    --text-primary: #0F172A;
-    --text-secondary: #64748B;
+    --primary: #E07856;
+    --text-primary: #3A342E;
+    --text-secondary: #8A8178;
+    --accent: #E07856;
+    --secondary-accent: #7BA88F;
+    --border: #EDE6DD;
   }
   
   body {
@@ -19,6 +21,12 @@
     font-feature-settings: 'kern' 1, 'liga' 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-family: 'Source Sans 3', sans-serif;
+    line-height: 1.7;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
   }
   * {
     @apply transition-colors duration-150;
@@ -43,22 +51,22 @@
 
 @layer utilities {
   .glass {
-    @apply bg-white/70 backdrop-blur-md border border-white/40;
+    @apply bg-white/70 backdrop-blur-md border border-[#EDE6DD];
   }
   .glass-card {
-    @apply bg-white/90 backdrop-blur-xl border border-white shadow-lg rounded-[24px];
+    @apply bg-white border border-[#EDE6DD] shadow-premium rounded-[24px];
   }
   .premium-input {
-    @apply w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary shadow-sm hover:border-gray-300 transition-all;
+    @apply w-full px-4 py-3 bg-white border border-[#EDE6DD] rounded-[16px] text-[#3A342E] text-sm placeholder-[#8A8178] focus:outline-none focus:ring-2 focus:ring-[#E07856]/10 focus:border-[#E07856] shadow-sm hover:border-[#8A8178]/50 transition-all;
   }
   .premium-btn {
-    @apply px-6 py-3 rounded-xl font-bold text-sm shadow-md transition-all active:scale-[0.98] flex items-center justify-center gap-2;
+    @apply px-6 py-3 rounded-full font-bold text-sm transition-all active:scale-[0.98] flex items-center justify-center gap-2;
   }
   .premium-btn-primary {
-    @apply premium-btn text-white shadow-primary/30 hover:shadow-primary/40 bg-[linear-gradient(135deg,#6C63FF_0%,#4F46E5_100%)];
+    @apply premium-btn text-white bg-[#E07856] hover:bg-[#C95E3B] shadow-sm;
   }
   .premium-btn-secondary {
-    @apply premium-btn bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300;
+    @apply premium-btn bg-white border border-[#EDE6DD] text-[#3A342E] hover:bg-[#FBF7F2] hover:border-[#8A8178];
   }
 }
 
