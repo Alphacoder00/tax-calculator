@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-color: #F8FAFC;
+    --card-color: #FFFFFF;
+    --primary: #5B5CEB;
+    --primary-gradient: linear-gradient(135deg, #6C63FF 0%, #4F46E5 100%);
+    --text-primary: #0F172A;
+    --text-secondary: #64748B;
+  }
+  
+  body {
+    @apply antialiased;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  * {
+    @apply transition-colors duration-150;
+  }
+  
+  @media (min-width: 1600px) {
+    html {
+      font-size: 17px;
+    }
+  }
+  @media (min-width: 1920px) {
+    html {
+      font-size: 18px;
+    }
+  }
+  @media (min-width: 2200px) {
+    html {
+      font-size: 19px;
+    }
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/40;
+  }
+  .glass-card {
+    @apply bg-white/90 backdrop-blur-xl border border-white shadow-lg rounded-[24px];
+  }
+  .premium-input {
+    @apply w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary shadow-sm hover:border-gray-300 transition-all;
+  }
+  .premium-btn {
+    @apply px-6 py-3 rounded-xl font-bold text-sm shadow-md transition-all active:scale-[0.98] flex items-center justify-center gap-2;
+  }
+  .premium-btn-primary {
+    @apply premium-btn text-white shadow-primary/30 hover:shadow-primary/40 bg-[linear-gradient(135deg,#6C63FF_0%,#4F46E5_100%)];
+  }
+  .premium-btn-secondary {
+    @apply premium-btn bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300;
+  }
+}
+
+/* Custom Scrollbar for a premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Animations */
+.card-enter {
+  animation: cardEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes cardEnter {
+  from { opacity: 0; transform: translateY(12px) scale(0.99); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.reveal {
+  animation: reveal 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
